@@ -45,6 +45,15 @@ git clone https://github.com/vitabaks/postgresql_cluster.git
 !!! скорректировать значения postgresql_cluster_my/inventory под своей проект !!!
 !!! перед этим в vars/main.yml заменить пароли с "xxx" на свои !!!
 
+в моем случае изменить
+```
+patroni_superuser_password: "xxx" 
+patroni_replication_password: "xxx" 
+pgbouncer_auth_password: "xxx"
+monitoring_password: "xxx"
+user_password: "xxx"
+```
+
 ```sh
 cp postgresql_cluster_my/inventory postgresql_cluster/inventory
 cp postgresql_cluster_my/vars/main.yml postgresql_cluster/vars/main.yml
