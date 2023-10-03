@@ -1,0 +1,6 @@
+patroni_superuser_password: "xxx"
+patroni_replication_password: "xxx"
+pgbouncer_auth_password: "xxx"
+monitoring_password: "xxx"
+user_password: "xxx"
+  

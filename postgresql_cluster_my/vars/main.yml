@@ -22,6 +22,9 @@ patroni_superuser_password: "xxx"  # please change password
 patroni_replication_username: "replicator"
 patroni_replication_password: "xxx"  # please change password
 
+monitoring_password: "xxx"
+user_password: "xxx"
+
 synchronous_mode: false  # or 'true' for enable synchronous database replication
 synchronous_mode_strict: false  # if 'true' then block all client writes to the master, when a synchronous replica is not available
 synchronous_node_count: 1  # number of synchronous standby databases
@@ -149,8 +152,8 @@ postgresql_password_encryption_algorithm: "scram-sha-256"  # or "md5" if your cl
 # (optional) list of users to be created (if not already exists)
 postgresql_users:
   - { name: "{{ pgbouncer_auth_username }}", password: "{{ pgbouncer_auth_password }}", flags: "LOGIN", role: "" }
-  - { name: "monitoring", password: "xxx", flags: "LOGIN", role: "pg_monitor" } # monitoring Service Account
-  - { name: "mydb-user", password: "xxx", flags: "SUPERUSER" }
+  - { name: "monitoring", password: "{{ monitoring_password }}", flags: "LOGIN", role: "pg_monitor" } # monitoring Service Account
+  - { name: "mydb-user", password: "{{ user_password }}", flags: "SUPERUSER" }
 #  - { name: "", password: "", flags: "NOSUPERUSER" }
 #  - { name: "", password: "", flags: "NOSUPERUSER" }
 #  - { name: "", password: "", flags: "NOLOGIN" }

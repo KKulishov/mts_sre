@@ -44,3 +44,8 @@ ansible_user='tooz'
 [pgbackrest:vars]
 ansible_user='postgres'
 ansible_ssh_pass='secretpassword'
+
+[prod]
+master
+replica
+balancers
