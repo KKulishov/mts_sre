@@ -61,14 +61,15 @@ cp postgresql_cluster_my/vars/main.yml postgresql_cluster/vars/main.yml
 
 ### деплой приложения через helm
 
-!!! скорректировать значения в sre_app/.kube/app/values.yaml в поле ConnectionStrings__PgConnection под свои значения которые были указанны ранее в postgresql_cluster !!!
+!!! скорректировать значения в sre_app/.kube/app/values.yaml в поле secret под свои значения которые были указанны ранее в postgresql_cluster !!!
+
+парметры подключения к БД уже открыто указаны в sre_app/.kube/app/values.yaml в secret кроме password, его зададим в ручную или через CI/CD 
 
 само приложение описано в helm шаблоне в каталоге sre_app/.kube/app
 
-
-установка в кубере 
+установка в кубере (пример):
 ```sh
-./helm upgrade --install -n sre-cource-student-53 --namespace sre-cource-student-53 app sre_app/.kube/app/
+helm upgrade --install -n sre-cource-student-53 --namespace sre-cource-student-53 --set secret.app.password="xxx" app sre_app/.kube/app/
 ```
 
 
