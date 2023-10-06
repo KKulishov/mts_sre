@@ -15,6 +15,7 @@
 [balancers]
 192.168.10.3
 192.168.10.4
+192.168.10.2
 #10.128.64.144 new_node=true
 
 # PostgreSQL nodes
