@@ -1,5 +1,9 @@
 ## Мониторинг
 
+Цель мониторинга
+
+![monitoring](https://static.tildacdn.com/tild3063-6263-4531-a233-633939643433/__2023-10-13__143032.png)
+
 дашборды grafana(./grafana_dashboard)
 
 rule правила для promethrues для 4 золотых сигнала(./alertmanager/4_gold_signal)
