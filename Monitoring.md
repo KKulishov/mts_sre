@@ -4,7 +4,7 @@
 
 ![monitoring](https://static.tildacdn.com/tild3063-6263-4531-a233-633939643433/__2023-10-13__143032.png)
 
-дашборды grafana(./grafana_dashboard)
+дашборды grafana(./grafana_dashboard) [link](http://5eca9364-3899-4021-b861-fd4f64e48c6d.mts-gslb.ru/dashboards/f/M4CESrGSz/kulishov-konstantin)
 
 rule правила для promethrues для 4 золотых сигнала(./alertmanager/4_gold_signal)
 
