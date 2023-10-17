@@ -1,0 +1,36 @@
+groups:
+  - name: capability
+    rules:
+    - alert: HostHighCpuLoad
+      expr: (sum by (instance) (avg by (mode, instance) (rate(node_cpu_seconds_total{mode!="idle"}[2m]))) > 0.8) * on(instance) group_left (nodename) node_uname_info{nodename=~".+"}
+      for: 10m
+      labels:
+        severity: warning
+        sre: GoldSignal
+      annotations:
+        summary: Host high CPU load (instance {{ $labels.instance }})
+        value: "{{ $value }}"
+        description: "CPU load is > 80%\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+        dashboard: "http://5eca9364-3899-4021-b861-fd4f64e48c6d.mts-gslb.ru/d/7GKkdrGIz/4-golden-signal?orgId=1&viewPanel=32"
+    - alert: HostOutOfMemory
+      expr: (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes * 100 < 10) * on(instance) group_left (nodename) node_uname_info{nodename=~".+"}
+      for: 2m
+      labels:
+        severity: warning
+        sre: GoldSignal
+      annotations:
+        summary: Host out of memory (instance {{ $labels.instance }})
+        value: "{{ $value }}"
+        description: "Node memory is filling up (< 10% left)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+        dashboard: "http://5eca9364-3899-4021-b861-fd4f64e48c6d.mts-gslb.ru/d/7GKkdrGIz/4-golden-signal?orgId=1&editPanel=34"
+    - alert: HostOutOfDiskSpace
+      expr: ((node_filesystem_avail_bytes * 100) / node_filesystem_size_bytes < 10 and ON (instance, device, mountpoint) node_filesystem_readonly == 0) * on(instance) group_left (nodename) node_uname_info{nodename=~".+"}
+      for: 2m
+      labels:
+        severity: warning
+        sre: GoldSignal
+      annotations:
+        summary: Host out of disk space (instance {{ $labels.instance }})
+        value: "{{ $value }}"
+        description: "Disk is almost full (< 10% left)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}" 
+        dashboard: "http://5eca9364-3899-4021-b861-fd4f64e48c6d.mts-gslb.ru/d/7GKkdrGIz/4-golden-signal?orgId=1&viewPanel=50"   

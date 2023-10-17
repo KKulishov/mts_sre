@@ -1,0 +1,15 @@
+- name: install node-exporter
+  hosts: nodeexporter
+  become: yes
+  roles:
+  - node-exporter
+- name: install monitoring stack
+  hosts: promt
+  become: yes
+  roles:
+  - prometheus
+- name: install postgresql-exporter
+  hosts: postgresql
+  become: yes
+  roles:
+  - postgres-exporter  

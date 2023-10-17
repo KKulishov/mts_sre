@@ -1,0 +1,21 @@
+[nodeexporter]
+db1 ansible_host=192.168.10.3
+db2 ansible_host=192.168.10.4
+etcd1 ansible_host=192.168.10.5
+etcd2 ansible_host=192.168.10.6
+etcd3 ansible_host=192.168.10.7
+
+[promt]
+haproxy ansible_host=192.168.10.2
+
+[postgresql]
+db1 ansible_host=192.168.10.3
+db2 ansible_host=192.168.10.4
+
+[all:vars]
+ansible_connection='ssh'
+ansible_ssh_port='22'
+ansible_user='tooz'
+ANSIBLE_HOST_KEY_CHECKING=False 
+ANSIBLE_PIPELINING=True 
+ansible_ssh_extra_args='-o StrictHostKeyChecking=no -o ControlMaster=auto -o ControlPersist=90s'

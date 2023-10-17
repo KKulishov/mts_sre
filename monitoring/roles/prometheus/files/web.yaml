@@ -1,0 +1,4 @@
+---
+# https://prometheus.io/docs/guides/basic-auth/
+basic_auth_users:
+  admin: $2b$12$wAc3m5ZX94jab6bI3MEhkOKm0gOW2M9.UuI0.B4Y61SLB7xA8e3Y.

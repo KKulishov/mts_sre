@@ -1,0 +1,30 @@
+---
+postgres_exporter_user: postgres
+postgres_exporter_user_manage: false
+postgres_exporter_group: "{{ postgres_exporter_user }}"
+postgres_exporter_group_manage: false
+
+postgres_exporter_version: "0.14.0"
+postgres_exporter_checksum: "sha256:389f8c8d9a57132b9744b2108bee168085da729b574de5996e42cda15110c672"
+
+prometheus_exporter_dist_dir: "/usr/local/bin"
+postgres_exporter_dist_dir: "{{ prometheus_exporter_dist_dir }}"
+postgres_exporter_dist: postgres_exporter-{{ postgres_exporter_version }}.linux-amd64
+postgres_exporter_url: "https://github.com/prometheus-community/postgres_exporter/releases/download/v{{ postgres_exporter_version }}/{{ postgres_exporter_dist }}.tar.gz"
+postgres_exporter_program: "{{ prometheus_exporter_dist_dir }}/postgres_exporter"
+postgres_exporter_home: "{{ '/var/lib/pgsql' if ansible_os_family ==  'RedHat' else '/var/lib/postgresql' }}"
+postgres_exporter_home_manage: false
+postgres_exporter_datasource: "user=postgres dbname=sre host=/var/run/postgresql/ sslmode=disable"
+postgres_exporter_queries: "queries.yml"
+postgres_exporter_flags:
+  - '--extend.query-path={{ postgres_exporter_home }}/queries.yml'
+
+postgres_exporter_config_file: /etc/default/postgres_exporter
+postgres_exporter_pid_path: "/var/run"
+postgres_exporter_log_path: "/var/log/postgres_exporter"
+
+postgres_exporter_service_manage: true
+postgres_exporter_service_enable: true
+postgres_exporter_service_state: started
+postgres_exporter_service_notify: true
+
