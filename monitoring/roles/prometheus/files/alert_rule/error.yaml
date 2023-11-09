@@ -1,0 +1,57 @@
+groups:
+  - name: error
+    rules:
+          - alert: PostgresqlDeadLock
+            expr: increase(pg_stat_database_deadlocks{datname!~"template.*|postgres"}[1m]) > 2
+            for: 1m
+            labels:
+              severity: error
+              sre: GoldSignal
+            annotations:
+              summary: "Postgresql dead locks (instance {{ $labels.instance }})"
+              value: "{{ $value }}"
+              description: "PostgreSQL has dead-locks\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+              dashboard: "http://5eca9364-3899-4021-b861-fd4f64e48c6d.mts-gslb.ru/d/7GKkdrGIz/4-golden-signal?orgId=1"
+          - alert: HostNetworkReceiveErrors
+            expr: (rate(node_network_receive_errs_total[2m]) / rate(node_network_receive_packets_total[2m]) > 0.01) * on(instance) group_left (nodename) node_uname_info{nodename=~".+"}
+            for: 2m
+            labels:
+              severity: error
+              sre: GoldSignal
+            annotations:
+              summary: "Host Network Receive Errors (instance {{ $labels.instance }})"
+              value: "{{ $value }}"
+              description: "Host {{ $labels.instance }} interface {{ $labels.device }} has encountered {{ printf \"%.0f\" $value }} receive errors in the last two minutes.\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+              dashboard: "http://5eca9364-3899-4021-b861-fd4f64e48c6d.mts-gslb.ru/d/7GKkdrGIz/4-golden-signal?orgId=1"   
+          - alert: HostNetworkTransmitErrors
+            expr: (rate(node_network_transmit_errs_total[2m]) / rate(node_network_transmit_packets_total[2m]) > 0.01) * on(instance) group_left (nodename) node_uname_info{nodename=~".+"}
+            for: 2m
+            labels:
+              severity: error
+              sre: GoldSignal
+            annotations:
+              summary: "Host Network Transmit Errors (instance {{ $labels.instance }})"
+              value: "{{ $value }}"
+              description: "Host {{ $labels.instance }} interface {{ $labels.device }} has encountered {{ printf \"%.0f\" $value }} transmit errors in the last two minutes.\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+              dashboard: "http://5eca9364-3899-4021-b861-fd4f64e48c6d.mts-gslb.ru/d/7GKkdrGIz/4-golden-signal?orgId=1"  
+          - alert: BlackboxProbeFailed
+            expr: probe_success == 0
+            for: 0m
+            labels:
+              severity: critical
+              sre: GoldSignal
+            annotations:
+              summary: Blackbox probe failed (instance {{ $labels.instance }})
+              description: "Probe failed\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+              dashboard: "http://5eca9364-3899-4021-b861-fd4f64e48c6d.mts-gslb.ru/d/NEzutrbMkdvsdvsdvsdvsd/blackbox-exporter-http-prober?orgId=1&refresh=1m"
+          - alert: BlackboxProbeHttpFailure
+            expr: probe_http_status_code <= 199 OR probe_http_status_code >= 400
+            for: 0m
+            labels:
+              severity: critical
+              sre: GoldSignal
+              value: "{{ $value }}"
+            annotations:
+              summary: Blackbox probe HTTP failure (instance {{ $labels.instance }})
+              description: "HTTP status code is not 200-399\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+              dashboard: "http://5eca9364-3899-4021-b861-fd4f64e48c6d.mts-gslb.ru/d/NEzutrbMkdvsdvsdvsdvsd/blackbox-exporter-http-prober?orgId=1&refresh=1m"

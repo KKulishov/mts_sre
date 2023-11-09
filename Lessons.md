@@ -71,5 +71,17 @@
 
 6.3 Балансировка нагрузки
 
-[видео]()
-[презентация]()
+[видео](https://youtu.be/nnk2JE2kSZs)
+[презентация](https://drive.google.com/file/d/1rIMpzyF-S6nxEA0zZDxz7i4EKRJNORxt/view?usp=sharing)
+
+6.4 Мастер-класс по настройке мониторинга
+
+[видео](https://youtu.be/_V0k9zGqXNw)
+
+### Раздел 7: Шестой модуль
+
+7.1 Shift Right Testing
+
+[видео](https://youtu.be/cvXarEDkamQ)
+[презентация](https://drive.google.com/file/d/1-lNYtu7iM_YbWS1O9OhC-WuE3kxJbLqF/view?usp=drivesdk)
+

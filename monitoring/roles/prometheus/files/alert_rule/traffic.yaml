@@ -1,0 +1,33 @@
+groups:
+  - name: traffic
+    rules:
+    - alert: PostgresqlTooManyConnections
+      expr: sum by (instance, job, server) (pg_stat_activity_count) > min by (instance, job, server) (pg_settings_max_connections * 0.8)
+      for: 2m
+      labels:
+        severity: warning
+        sre: GoldSignal
+      annotations:
+        summary: Postgresql too many connections (instance {{ $labels.instance }})
+        description: "PostgreSQL instance has too many connections (> 80%).\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+        dashboard: "http://5eca9364-3899-4021-b861-fd4f64e48c6d.mts-gslb.ru/d/7GKkdrGIz/4-golden-signal?orgId=1&editPanel=26"
+    - alert: HostUnusualNetworkThroughputIn
+      expr: (sum by (instance) (rate(node_network_receive_bytes_total[2m])) / 1024 / 1024 > 100) * on(instance) group_left (nodename) node_uname_info{nodename=~".+"}
+      for: 5m
+      labels:
+        severity: warning
+        sre: GoldSignal
+      annotations:
+        summary: Host unusual network throughput in (instance {{ $labels.instance }})
+        description: "Host network interfaces are probably receiving too much data (> 100 MB/s)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+        dashboard: "http://5eca9364-3899-4021-b861-fd4f64e48c6d.mts-gslb.ru/d/7GKkdrGIz/4-golden-signal?orgId=1"
+    - alert: HostUnusualNetworkThroughputOut
+      expr: (sum by (instance) (rate(node_network_transmit_bytes_total[2m])) / 1024 / 1024 > 100) * on(instance) group_left (nodename) node_uname_info{nodename=~".+"}
+      for: 5m
+      labels:
+        severity: warning
+        sre: GoldSignal
+      annotations:
+        summary: Host unusual network throughput out (instance {{ $labels.instance }})
+        description: "Host network interfaces are probably sending too much data (> 100 MB/s)\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"   
+        dashboard: "http://5eca9364-3899-4021-b861-fd4f64e48c6d.mts-gslb.ru/d/7GKkdrGIz/4-golden-signal?orgId=1"
