@@ -85,3 +85,7 @@
 [видео](https://youtu.be/cvXarEDkamQ)
 [презентация](https://drive.google.com/file/d/1-lNYtu7iM_YbWS1O9OhC-WuE3kxJbLqF/view?usp=drivesdk)
 
+7.2 Performance Testing
+
+[видео](https://youtu.be/Q5xvJf-ufxg)
+[презентация](https://drive.google.com/file/d/1QSZWypzimhQbVYlT2G9JzQWzizi661tF/view?usp=sharing)
