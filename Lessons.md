@@ -89,3 +89,10 @@
 
 [видео](https://youtu.be/Q5xvJf-ufxg)
 [презентация](https://drive.google.com/file/d/1QSZWypzimhQbVYlT2G9JzQWzizi661tF/view?usp=sharing)
+
+### Раздел 8: Седьмой модуль
+
+8.1 Chaos Engineering
+
+[видео](https://youtu.be/n-RSARBxJe0)
+[презентация](https://drive.google.com/file/d/1TXDRXILy2_Fan54Ur4aO-HXA45C5Qo18/view?usp=sharing)
