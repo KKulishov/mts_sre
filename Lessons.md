@@ -96,3 +96,11 @@
 
 [видео](https://youtu.be/n-RSARBxJe0)
 [презентация](https://drive.google.com/file/d/1TXDRXILy2_Fan54Ur4aO-HXA45C5Qo18/view?usp=sharing)
+
+
+### Раздел 9: Восьмой модуль
+
+9.1 Post Mortem
+
+[видео](https://youtu.be/9lgvvMJpdlY)
+[презентация](https://drive.google.com/file/d/19fXA7nmjR5cbRLy2Ca3DRovAipOrYx5I/view?usp=sharing)
