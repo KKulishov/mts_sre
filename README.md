@@ -11,7 +11,7 @@
 
 ### Приложение в kubernetes 
 Написать helm chart для разворачивания api в выделенном неймспейсе. Docker image лежит в публичном registry, разворачивать стоит актуальную версию ghcr.io/ldest/sre-course/api
-[пример образа](https://github.com/ldest/SreCourseApi/pkgs/container/sre-course%2Fapi)
+[пример образа](ghcr.io/ldest/sre-course/api)
 
 
 нюансы по app 

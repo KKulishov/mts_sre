@@ -104,3 +104,14 @@
 
 [видео](https://youtu.be/9lgvvMJpdlY)
 [презентация](https://drive.google.com/file/d/19fXA7nmjR5cbRLy2Ca3DRovAipOrYx5I/view?usp=sharing)
+
+
+9.2 Post Mortem. Часть 2
+
+[видео](https://youtu.be/PZVMkcQbxtE)
+[презентация](https://drive.google.com/file/d/1sF4TYYyTP_0kZLlVx8F18WA8SDEkh-fR/view?usp=sharing)
+
+9.3 Post Mortem. Часть 2
+
+[видео](https://youtu.be/kY32TssaOxA)
+[презентация](https://drive.google.com/file/d/1n0oh1EAJntuL8N-7mPLOhqqGM_qoDPlJ/view?usp=sharing)
