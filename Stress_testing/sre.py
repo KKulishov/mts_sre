@@ -2,6 +2,9 @@ from locust import HttpUser, SequentialTaskSet, task, between
 import json
 import random
 class SreApp(SequentialTaskSet):
+    """
+    Здесь через GET делаем запрос  ранодмный выбор по списку Cities http://sre-app.rndhelp.ru/Cities
+    """
     @task(30)
     def get_cities_and_fetch_id(self):
         # Шаг 1: Получаем JSON с /Cities
@@ -41,6 +44,9 @@ class SreApp(SequentialTaskSet):
 
 
 class Random_change(SequentialTaskSet):
+    """
+    Здесь через PUT изменеям рандомно темепературу через ранодмный выбор по списку Forecast http://sre-app.rndhelp.ru/Forecast
+    """
     @task(5)
     def cities_id_change(self):
         # Шаг 1: Получаем текущие данные с /Forecast
