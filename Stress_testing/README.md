@@ -18,7 +18,7 @@ docs [Locust](https://docs.locust.io/en/stable/quickstart.html)
 pip3 install locust
 ```
 
-до материалы (https://www.blazemeter.com/blog/locust-python и https://github.com/locustio/locust/issues/1896)
+до материалы (https://www.blazemeter.com/blog/locust-python , https://github.com/locustio/locust/issues/1896, https://www.youtube.com/watch?v=_Z62E46bDmY&t=2458s, https://github.com/NikolaiMaximov/heisenbug_2022/blob/main/demo_code/http_max_perf.py) 
 
 
 параметры запуска, где  -H указываем на какой хост вести запросы , -u кол-во пользв. , -r кол-во запросов от польз.  , параметр autostart означает, что сразу запускаем тест. 
@@ -35,8 +35,7 @@ locust -f sre.py -H http://sre-app.rndhelp.ru -u 2160 -r 20 --autostart
 
 Применил self.user.stop() так как self.interrupt() останавливается на вермя но потом после того как сервис начинает работать заанова запускает тестирование. каждый метод интересен при разных условиях тестирования при ручном или автоматическом. 
 
-Не стал указывать методы PUT запросов при изменении погоды в городе. Так как погода как правило меняется не часто ( ~ 1 раз в час как и прогноз) 
-
+id по горадам получаю рандомно при кажой итерации запросе.
 ### Dashboard метрик 
 [общий](http://5eca9364-3899-4021-b861-fd4f64e48c6d.mts-gslb.ru/dashboards/f/M4CESrGSz/kulishov-konstantin)
 
