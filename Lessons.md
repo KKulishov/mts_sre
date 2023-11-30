@@ -115,3 +115,8 @@
 
 [видео](https://youtu.be/kY32TssaOxA)
 [презентация](https://drive.google.com/file/d/1n0oh1EAJntuL8N-7mPLOhqqGM_qoDPlJ/view?usp=sharing)
+
+9.4 Мастер-класс по Нагрузочному тестированию 
+
+[видео](https://youtu.be/uXTFy2HrhTo)
+[презентация](https://drive.google.com/file/d/11uCWBiFJmEsjdt38o5kVvjfcpE8ZDRVM/view?usp=drivesdk)
