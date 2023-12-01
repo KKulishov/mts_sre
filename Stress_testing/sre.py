@@ -32,8 +32,9 @@ class SreApp(SequentialTaskSet):
                     print(f"Successfully fetched data for city with id {selected_id}")
                 else:
                     print(f"Failed to fetch data for city with id {selected_id}")
+                    self.on_stop
     
-    @task(20)
+    @task(10)
     def Forecast(self):
         with self.client.get("/Forecast", catch_response=True) as response:
             if response.status_code != 200:
@@ -83,12 +84,15 @@ class Random_change(SequentialTaskSet):
 
             # Отправляем PUT-запрос с обновленными данными
             with self.client.put(f"/Forecast/{selected_id}", json=body) as put_response:
-
                 # Обработка результата в соответствии с вашими требованиями
                 if put_response.status_code == 200:
                     print(f"Successfully updated temperature for forecast with id {selected_id}")
                 else:
                     print(f"Failed to update temperature for forecast with id {selected_id} ")
+                    self.on_stop
+    
+    def on_stop(self):
+        self.user.stop()            
 
 class WeatherForecast(SequentialTaskSet):
     @task(10)

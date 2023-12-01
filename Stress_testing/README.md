@@ -60,11 +60,13 @@ locust -f sre.py -H http://sre-app.rndhelp.ru -u 2160 -r 20 --autostart
 Вот скриншот по ingress
 [ingress_traffic](https://drive.google.com/file/d/1R9b0qePLF06HfiqYzsozvmcEIEDM4hha/view?usp=drive_link)
 
-Вот скриншот по ingress
+Вот скриншот по db 
 [traffic_db](https://drive.google.com/file/d/1ns2XJ4gpi4_fbDGDGCwsoM_bO8ogNtSG/view?usp=drive_link)
+[connect_db](https://drive.google.com/file/d/1joGdcR9QN7_9MHP6lD7CIjg6M_ez6iig/view?usp=drive_link)
 
 Вот скриншот по статистики от самого locust
-[static_locust](https://drive.google.com/file/d/1gRZ-QcyJP0zS88UTZBC5Wr_JiyvqYwaI/view?usp=drive_link)
+[static_locust](https://drive.google.com/file/d/15g5fI0IOaBjetODk5we90E_PgnVFeoIJ/view?usp=drive_link)
+[static_locust_2](https://drive.google.com/file/d/1r4nZP_0NDsrRm9ArJHBeD1tywVtGuO0t/view?usp=drive_link)
 
 Вот скриншот по появлению 
 [5xx](https://drive.google.com/file/d/1YjqzVfMKYomo92KFQVzNm6gU3jeTiBkz/view?usp=drive_link)
