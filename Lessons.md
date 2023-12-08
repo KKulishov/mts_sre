@@ -120,3 +120,13 @@
 
 [видео](https://youtu.be/uXTFy2HrhTo)
 [презентация](https://drive.google.com/file/d/11uCWBiFJmEsjdt38o5kVvjfcpE8ZDRVM/view?usp=drivesdk)
+
+9.5 Мастер-класс по SLO, SLI и Error Budget
+
+[видео](https://youtu.be/1gbrbFP9Md8)
+[презентация](https://drive.google.com/file/d/1Nv_JjrK7n3dQwEVnmBrAs_kMYrUsp89G/view?usp=sharing)
+
+9.6 Мастер-класс по Chaos Engineering
+
+[видео](https://youtu.be/KQFlBpEQNvo)
+[презентация](https://drive.google.com/file/d/1NXQE_2T3frjlEdjZOhMPrh1IqS7yvFSO/view?usp=sharing)
