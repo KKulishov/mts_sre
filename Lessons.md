@@ -130,3 +130,7 @@
 
 [видео](https://youtu.be/KQFlBpEQNvo)
 [презентация](https://drive.google.com/file/d/1NXQE_2T3frjlEdjZOhMPrh1IqS7yvFSO/view?usp=sharing)
+
+9.7. Мастер-класс по Troubleshooting
+
+[видео](https://youtu.be/KRroslO0WY4)
