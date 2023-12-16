@@ -193,6 +193,8 @@ Npgsql.NpgsqlException (0x80004005): Exception while reading from stream
 
 [latency_reboot_bd](https://drive.google.com/file/d/171tNsvfH0dYbh5sxzfe3kfRGcQt-zyms/view?usp=drive_link)
 
+Время переключения БД на нового мастера  ~30 сек. 
+[patroni](http://5eca9364-3899-4021-b861-fd4f64e48c6d.mts-gslb.ru/d/rLzu8z_Vksdvsdv/postgresql-patroni-original?orgId=1&from=1702727621774&to=1702728546432)
 
 Итоги вывода. 
 
