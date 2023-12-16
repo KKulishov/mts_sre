@@ -138,12 +138,69 @@ blade create cpu load --cpu-percent 70 --timeout 300
 ./blade status --type create
 ```
 
+5. Переключения БД при не доступности db1 или db2
+
+знаем кто лидер
+```
+patronictl list
+```
+запускаем нагрузочное тестирование 
+
+ребут лидер БД
+
+и получаем не доступность сервиса в течении 30 сек. + в короткий промежуток времени выросла время ответа сервиса
+
+в логах приложения такое
+
+```
+[12:04:33 ERR] An unhandled exception has occurred while executing the request.
+Npgsql.NpgsqlException (0x80004005): Exception while reading from stream
+ ---> System.TimeoutException: Timeout during reading attempt
+   at Npgsql.Internal.NpgsqlReadBuffer.<Ensure>g__EnsureLong|42_0(NpgsqlReadBuffer buffer, Int32 count, Boolean async, Boolean readingNotifications)
+   at Npgsql.Internal.NpgsqlConnector.RawOpen(SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|216_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.<Get>g__RentAsync|28_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|45_0(Boolean async, CancellationToken cancellationToken)
+   at SreCourseApi.DAL.PgSqlConnectionProvider.GetAsync() in /home/runner/work/SreCourseApi/SreCourseApi/SreCourseApi.DAL/PgSqlConnectionProvider.cs:line 25
+   at SreCourseApi.DAL.CitiesRepository.GetAll() in /home/runner/work/SreCourseApi/SreCourseApi/SreCourseApi.DAL/CitiesRepository.cs:line 56
+   at SreCourseApi.BL.CitiesService.GetAll() in /home/runner/work/SreCourseApi/SreCourseApi/SreCourseApi.BL/CitiesService.cs:line 50
+   at SreCourseApi.Controllers.CitiesController.GetList() in /home/runner/work/SreCourseApi/SreCourseApi/SreCourseApi/Controllers/CitiesController.cs:line 43
+   at lambda_method5(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+```
+
+вот сами графики/метрик
+
+[error_reboot_bd](https://drive.google.com/file/d/1zAjec7y7-utbH7ZvAGWQKCmUU4dCYiBX/view?usp=drive_link)
+
+[error_ingress_reboot_bd](https://drive.google.com/file/d/1V5D514O__JMeq9lGoU6Fp871ADSUWDYm/view?usp=drive_link)
+
+[latency_reboot_bd](https://drive.google.com/file/d/171tNsvfH0dYbh5sxzfe3kfRGcQt-zyms/view?usp=drive_link)
+
 
 Итоги вывода. 
 
 1. Нужно следить за LA БД и доступности ОЗУ и процессорного времени. 
 2. Так же следит за стабильностью работы сети. 
-3. Нагрузку по cpu и mem не делал так как при нагрузочном тестировании и так описал что приложение в кубере упирается в cpu  ипроисходит тротлинг cpu что влечет к появлению 5xx а при исчерпании памяти идет рестарт (OOM приходит). 
+3. Нагрузку по cpu и mem на само приложение в кубере не делал так как при нагрузочном тестировании и так описал что приложение в кубере упирается в cpu  ипроисходит тротлинг cpu что влечет к появлению 5xx а при исчерпании памяти идет рестарт (OOM приходит). 
+4. Так же нужно следить за доступностью самих реплик БД , чтобы было возможно оперативно перключит лидер на реплику. 
+
 
 
 
